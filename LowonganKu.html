@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karir | LowonganKu - Wujudkan Potensimu</title>
+    <!-- Menggunakan Tailwind CSS via CDN sesuai standar desain modern yang bersih -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1E3A8A', // Blue 900
+                        secondary: '#3B82F6', // Blue 500
+                        dark: '#0F172A',
+                        light: '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar and smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        .hero-pattern {
+            background-color: #0F172A;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('https://placehold.co/1920x1080/1E3A8A/FFFFFF?text=LowonganKu');
+            background-size: cover;
+            background-position: center;
+        }
+        .job-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans bg-light text-gray-800 antialiased selection:bg-secondary selection:text-white">
+
+    <!-- Navbar -->
+    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary flex items-center gap-2">
+                <i class="fa-solid fa-cube text-secondary"></i> LowonganKu
+            </a>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#beranda" class="text-gray-600 hover:text-primary font-medium transition-colors">Beranda</a>
+                <a href="#tentang" class="text-gray-600 hover:text-primary font-medium transition-colors">Tentang</a>
+                <a href="#lowongan" class="text-gray-600 hover:text-primary font-medium transition-colors">Lowongan</a>
+                <a href="#kontak" class="text-gray-600 hover:text-primary font-medium transition-colors">Kontak</a>
+                <button onclick="openAdmin()" class="bg-slate-800 hover:bg-slate-900 text-white px-5 py-2 rounded-full font-medium transition-colors shadow-md flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-sm"></i> Admin
+                </button>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-600 focus:outline-none" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white border-t border-gray-100 absolute w-full" id="mobile-menu">
+            <div class="px-6 pt-2 pb-4 space-y-1 shadow-lg">
+                <a href="#beranda" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Beranda</a>
+                <a href="#tentang" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Tentang</a>
+                <a href="#lowongan" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Lowongan</a>
+                <a href="#kontak" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero-pattern min-h-[80vh] flex items-center mt-16 relative">
+        <div class="container mx-auto px-6 py-20 text-center relative z-10">
+            <span class="inline-block py-1 px-3 rounded-full bg-secondary/20 text-secondary border border-secondary/30 text-sm font-semibold mb-6 tracking-wide uppercase">
+                Bergabung Bersama Kami
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Bangun Masa Depan <br class="hidden md:block"> Teknologi Bersama LowonganKu
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Kami mencari individu yang penuh semangat dan inovatif. Temukan tempat di mana ide-ide Anda dihargai dan karier Anda dapat berkembang pesat.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#lowongan" class="bg-secondary hover:bg-blue-600 text-white px-8 py-3.5 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl text-lg">
+                    Cari Lowongan
+                </a>
+                <a href="#tentang" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-3.5 rounded-full font-semibold transition-all text-lg backdrop-blur-sm">
+                    Kenali Kami
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section ("Mengapa Bergabung") -->
+    <section id="tentang" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Mengapa Bergabung dengan LowonganKu?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kami tidak hanya membangun produk hebat, kami juga membangun lingkungan kerja yang mendukung pertumbuhan profesional dan personal Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Culture Card 1 -->
+                <div class="bg-light p-8 rounded-2xl border border-gray-100 hover:border-secondary/30 transition-colors">
+                    <div class="w-14 h-14 bg-blue-100 text-secondary rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-3">Inovasi Berkelanjutan</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Kami mendorong setiap anggota tim untuk berpikir di luar kebiasaan, bereksperimen, dan menghadirkan solusi teknologi yang berdampak nyata.
+                    </p>
+                </div>
+                
+                <!-- Culture Card 2 -->
+                <div class="bg-light p-8 rounded-2xl border border-gray-100 hover:border-secondary/30 transition-colors">
+                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-3">Keseimbangan & Fleksibilitas</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Kesehatan mental dan fisik Anda penting. Kami menawarkan jadwal yang fleksibel dan opsi kerja hybrid untuk mendukung work-life balance Anda.
+                    </p>
+                </div>
+
+                <!-- Culture Card 3 -->
+                <div class="bg-light p-8 rounded-2xl border border-gray-100 hover:border-secondary/30 transition-colors">
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-3">Pengembangan Karier</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Dapatkan akses ke program mentoring, tunjangan pelatihan tahunan, dan jalur promosi yang jelas untuk mempercepat laju karier Anda bersama kami.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Listings Section -->
+    <section id="lowongan" class="py-24 bg-gray-50 border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-end mb-12 gap-6">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Posisi Terbuka</h2>
+                    <p class="text-gray-600">Temukan peran yang sesuai dengan passion dan keahlian Anda.</p>
+                </div>
+                
+                <!-- Filters -->
+                <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                    <div class="relative w-full sm:w-64">
+                        <i class="fa-solid fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="searchInput" placeholder="Cari posisi..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all">
+                    </div>
+                    <div class="relative w-full sm:w-48">
+                        <select id="departmentFilter" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 appearance-none bg-white">
+                            <option value="all">Semua Departemen</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Design">Design</option>
+                            <option value="Data">Data</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State (Hidden by default) -->
+            <div id="emptyState" class="hidden text-center py-16">
+                <div class="text-gray-400 text-6xl mb-4"><i class="fa-solid fa-folder-open"></i></div>
+                <h3 class="text-xl font-bold text-gray-700 mb-2">Tidak ada lowongan ditemukan</h3>
+                <p class="text-gray-500">Coba ubah kata kunci pencarian atau filter departemen.</p>
+            </div>
+
+            <!-- Job Cards Container -->
+            <div class="grid grid-cols-1 gap-6" id="jobContainer">
+                
+                <!-- Job 1 -->
+                <div class="job-card bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-200 flex flex-col md:flex-row md:items-center justify-between gap-6" data-title="senior frontend developer" data-department="Engineering">
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="bg-blue-100 text-primary text-xs font-bold px-3 py-1 rounded-full">Engineering</span>
+                            <span class="text-gray-500 text-sm"><i class="fa-solid fa-clock mr-1 text-gray-400"></i> Full-time</span>
+                            <span class="text-gray-500 text-sm"><i class="fa-solid fa-location-dot mr-1 text-gray-400"></i> Jakarta / Hybrid</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-dark mb-2">Senior Frontend Developer</h3>
+                        <p class="text-gray-600 line-clamp-2 md:line-clamp-none">Membangun antarmuka web yang interaktif dan responsif menggunakan teknologi modern. Berkolaborasi dengan tim UI/UX dan Backend untuk pengalaman pengguna terbaik.</p>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <button onclick="applyJob('Senior Frontend Developer')" class="w-full md:w-auto bg-primary hover:bg-blue-800 text-white px-8 py-3 rounded-xl font-medium transition-colors shadow-md flex items-center justify-center gap-2">
+                            Lamar Sekarang <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="job-card bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-200 flex flex-col md:flex-row md:items-center justify-between gap-6" data-title="ui/ux designer" data-department="Design">
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">Design</span>
+                            <span class="text-gray-500 text-sm"><i class="fa-solid fa-clock mr-1 text-gray-400"></i> Full-time</span>
+                            <span class="text-gray-500 text-sm"><i class="fa-solid fa-location-dot mr-1 text-gray-400"></i> Remote</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-dark mb-2">UI/UX Designer</h3>
+                        <p class="text-gray-600 line-clamp-2 md:line-clamp-none">Merancang perjalanan pengguna (user journey) yang intuitif dan menciptakan desain visual yang menarik untuk produk-produk unggulan perusahaan.</p>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <button onclick="applyJob('UI/UX Designer')" class="w-full md:w-auto bg-primary hover:bg-blue-800 text-white px-8 py-3 rounded-xl font-medium transition-colors shadow-md flex items-center justify-center gap-2">
+                            Lamar Sekarang <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="job-card bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-200 flex flex-col md:flex-row md:items-center justify-between gap-6" data-title="data analyst" data-department="Data">
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">Data</span>
+                            <span class="text-gray-500 text-sm"><i class="fa-solid fa-clock mr-1 text-gray-400"></i> Contract</span>
+                            <span class="text-gray-500 text-sm"><i class="fa-solid fa-location-dot mr-1 text-gray-400"></i> Jakarta Selatan</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-dark mb-2">Data Analyst</h3>
+                        <p class="text-gray-600 line-clamp-2 md:line-clamp-none">Menganalisis data dalam skala besar untuk menemukan insight yang berharga, membuat dashboard, dan membantu manajemen dalam pengambilan keputusan berbasis data.</p>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <button onclick="applyJob('Data Analyst')" class="w-full md:w-auto bg-primary hover:bg-blue-800 text-white px-8 py-3 rounded-xl font-medium transition-colors shadow-md flex items-center justify-center gap-2">
+                            Lamar Sekarang <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak" class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="#" class="text-2xl font-bold text-white flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-cube text-secondary"></i> LowonganKu
+                    </a>
+                    <p class="text-gray-400 max-w-sm mb-6">Membangun teknologi masa depan untuk kehidupan yang lebih baik. Bergabunglah dengan perjalanan kami hari ini.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2 inline-block">Tautan</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#beranda" class="hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="#tentang" class="hover:text-white transition-colors">Tentang Kami</a></li>
+                        <li><a href="#lowongan" class="hover:text-white transition-colors">Karir</a></li>
+                        <li><a href="#kontak" class="hover:text-white transition-colors">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2 inline-block">Kontak</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-map-location-dot mt-1 text-secondary"></i>
+                            <span>Jl. Teknologi No. 45, Jakarta Selatan, Indonesia</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-secondary"></i>
+                            <span>careers@lowonganku.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center md:flex md:justify-between items-center text-gray-500 text-sm">
+                <p>&copy; 2026 LowonganKu Inc. Hak Cipta Dilindungi.</p>
+                <div class="mt-4 md:mt-0 space-x-4">
+                    <a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Form Modal -->
+    <div id="applyModal" class="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300" id="applyModalContent">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-2xl font-bold text-dark">Formulir Lamaran</h3>
+                <button type="button" onclick="closeApplyModal()" class="text-gray-400 hover:text-gray-700 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-gray-600 mb-6 text-sm">Anda melamar untuk posisi <strong id="modalJobTitle" class="text-primary"></strong>.</p>
+            
+            <form id="applicationForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                    <input type="text" id="appName" required placeholder="Cth: Budi Santoso" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Asal / Kota</label>
+                    <input type="text" id="appOrigin" required placeholder="Cth: Jakarta Selatan" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Minat & Alasan Melamar</label>
+                    <textarea id="appInterest" rows="3" required placeholder="Ceritakan singkat mengapa Anda cocok untuk peran ini..." class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all"></textarea>
+                </div>
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-primary hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition-colors shadow-md">
+                        Kirim Lamaran
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/60 z-[110] flex items-center justify-center hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300" id="successModalContent">
+            <div class="flex justify-between items-start mb-4">
+                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <button type="button" onclick="closeSuccessModal()" class="text-gray-400 hover:text-gray-700 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <h3 class="text-2xl font-bold text-dark mb-2">Lamaran Terkirim!</h3>
+            <p class="text-gray-600 mb-6">Terima kasih, data diri Anda telah berhasil kami simpan. Tim HR kami akan segera meninjaunya.</p>
+            <button onclick="closeSuccessModal()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-xl transition-colors">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div id="adminModal" class="fixed inset-0 bg-gray-100 z-[120] hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
+        <div class="min-h-screen p-6 md:p-10 flex items-center justify-center">
+            <div class="w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden transform scale-95 transition-transform duration-300" id="adminModalContent">
+                <div class="bg-slate-800 p-6 flex justify-between items-center text-white">
+                    <h2 class="text-2xl font-bold flex items-center gap-2"><i class="fa-solid fa-shield-halved text-secondary"></i> Dashboard Admin</h2>
+                    <button onclick="closeAdmin()" class="text-gray-400 hover:text-white transition-colors text-xl"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                
+                <div class="p-6 md:p-8">
+                    <div class="flex justify-between items-end mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Daftar Pelamar</h3>
+                            <p class="text-gray-500 text-sm">Data kandidat yang telah mengisi formulir lamaran masuk ke sini.</p>
+                        </div>
+                        <div class="bg-blue-50 text-primary px-4 py-2 rounded-lg font-semibold text-sm">
+                            Total: <span id="totalApplicants">0</span> Pelamar
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 text-gray-700 text-sm uppercase tracking-wide">
+                                    <th class="px-6 py-4 border-b font-semibold">No</th>
+                                    <th class="px-6 py-4 border-b font-semibold">Nama Lengkap</th>
+                                    <th class="px-6 py-4 border-b font-semibold">Asal Kota</th>
+                                    <th class="px-6 py-4 border-b font-semibold">Posisi Dilamar</th>
+                                    <th class="px-6 py-4 border-b font-semibold">Minat / Alasan</th>
+                                    <th class="px-6 py-4 border-b font-semibold">Waktu Daftar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminTableBody" class="text-gray-600 divide-y divide-gray-200">
+                                <!-- Data will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Job Filtering Logic
+        const searchInput = document.getElementById('searchInput');
+        const departmentFilter = document.getElementById('departmentFilter');
+        const jobCards = document.querySelectorAll('.job-card');
+        const emptyState = document.getElementById('emptyState');
+
+        function filterJobs() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filterValue = departmentFilter.value;
+            let visibleCount = 0;
+
+            jobCards.forEach(card => {
+                const title = card.getAttribute('data-title');
+                const dept = card.getAttribute('data-department');
+                
+                const matchesSearch = title.includes(searchTerm);
+                const matchesDept = filterValue === 'all' || dept === filterValue;
+
+                if (matchesSearch && matchesDept) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/Hide Empty State
+            if (visibleCount === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+        }
+
+        searchInput.addEventListener('input', filterJobs);
+        departmentFilter.addEventListener('change', filterJobs);
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('shadow-sm');
+            }
+        });
+
+        // State Management for Applications
+        let applicants = [];
+        let currentJobApplying = "";
+
+        // Elements
+        const applyModal = document.getElementById('applyModal');
+        const applyModalContent = document.getElementById('applyModalContent');
+        const modalJobTitle = document.getElementById('modalJobTitle');
+        const applicationForm = document.getElementById('applicationForm');
+        
+        const successModal = document.getElementById('successModal');
+        const successModalContent = document.getElementById('successModalContent');
+
+        const adminModal = document.getElementById('adminModal');
+        const adminModalContent = document.getElementById('adminModalContent');
+
+        // Handle Form Submission
+        applicationForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah reload halaman
+            
+            // Ambil data dari form
+            const newApplicant = {
+                id: Date.now(),
+                name: document.getElementById('appName').value,
+                origin: document.getElementById('appOrigin').value,
+                interest: document.getElementById('appInterest').value,
+                job: currentJobApplying,
+                date: new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' })
+            };
+
+            // Simpan ke memory lokal (array)
+            applicants.push(newApplicant);
+
+            // Tutup form dan tampilkan pemberitahuan sukses
+            closeApplyModal();
+            setTimeout(() => {
+                showSuccessModal();
+            }, 300);
+        });
+
+        // Apply Modal Logic
+        function applyJob(jobTitle) {
+            currentJobApplying = jobTitle;
+            modalJobTitle.textContent = jobTitle;
+            applicationForm.reset(); // Kosongkan form sebelumnya
+            
+            applyModal.classList.remove('hidden');
+            setTimeout(() => {
+                applyModal.classList.remove('opacity-0');
+                applyModalContent.classList.remove('scale-95');
+                applyModalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeApplyModal() {
+            applyModal.classList.add('opacity-0');
+            applyModalContent.classList.remove('scale-100');
+            applyModalContent.classList.add('scale-95');
+            setTimeout(() => applyModal.classList.add('hidden'), 300);
+        }
+
+        // Success Modal Logic
+        function showSuccessModal() {
+            successModal.classList.remove('hidden');
+            setTimeout(() => {
+                successModal.classList.remove('opacity-0');
+                successModalContent.classList.remove('scale-95');
+                successModalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeSuccessModal() {
+            successModal.classList.add('opacity-0');
+            successModalContent.classList.remove('scale-100');
+            successModalContent.classList.add('scale-95');
+            setTimeout(() => successModal.classList.add('hidden'), 300);
+        }
+
+        // Admin Dashboard Logic
+        function openAdmin() {
+            renderAdminTable();
+            adminModal.classList.remove('hidden');
+            setTimeout(() => {
+                adminModal.classList.remove('opacity-0');
+                adminModalContent.classList.remove('scale-95');
+                adminModalContent.classList.add('scale-100');
+                document.body.style.overflow = 'hidden'; // Matikan scroll pada halaman di background
+            }, 10);
+        }
+
+        function closeAdmin() {
+            adminModal.classList.add('opacity-0');
+            adminModalContent.classList.remove('scale-100');
+            adminModalContent.classList.add('scale-95');
+            setTimeout(() => {
+                adminModal.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Nyalakan scroll kembali
+            }, 300);
+        }
+
+        // Fungsi mencetak data pelamar ke dalam tabel
+        function renderAdminTable() {
+            const tbody = document.getElementById('adminTableBody');
+            document.getElementById('totalApplicants').textContent = applicants.length;
+            tbody.innerHTML = '';
+
+            // Jika masih kosong
+            if (applicants.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="px-6 py-12 text-center text-gray-500">
+                            <div class="flex flex-col items-center justify-center">
+                                <i class="fa-solid fa-inbox text-4xl mb-3 text-gray-300"></i>
+                                <p>Belum ada pelamar yang masuk saat ini.</p>
+                                <p class="text-sm mt-1">Coba isi form lamaran terlebih dahulu di halaman utama.</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // Looping data
+            applicants.forEach((app, index) => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 border-b">${index + 1}</td>
+                        <td class="px-6 py-4 border-b font-medium text-dark">${app.name}</td>
+                        <td class="px-6 py-4 border-b text-gray-600">${app.origin}</td>
+                        <td class="px-6 py-4 border-b">
+                            <span class="bg-blue-50 text-primary px-3 py-1 rounded-md text-xs font-semibold">${app.job}</span>
+                        </td>
+                        <td class="px-6 py-4 border-b text-sm text-gray-600 max-w-xs truncate" title="${app.interest}">${app.interest}</td>
+                        <td class="px-6 py-4 border-b text-sm text-gray-500 whitespace-nowrap">${app.date}</td>
+                    </tr>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
